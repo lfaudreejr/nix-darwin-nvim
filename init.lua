@@ -92,11 +92,19 @@ require("nixCatsUtils.lazyCat").setup(pluginList, nixLazyPath, {
 		},
 	},
 	{
-		"danymat/neogen",
-		dependencies = "nvim-treesitter/nvim-treesitter",
-		config = true,
-		-- Uncomment next line if you want to follow only stable versions
-		-- version = "*"
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		opts = {
+			-- add any options here
+		},
+		dependencies = {
+			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+			"MunifTanjim/nui.nvim",
+			-- OPTIONAL:
+			--   `nvim-notify` is only needed, if you want to use the notification view.
+			--   If not available, we use `mini` as the fallback
+			"rcarriga/nvim-notify",
+		},
 	},
 	-- NOTE: nixCats: nix downloads it with a different file name.
 	-- tell lazy about that.

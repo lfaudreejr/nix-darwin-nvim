@@ -232,8 +232,8 @@ return { -- LSP Configuration & Plugins
 				return lspconfig.util.root_pattern("deno.json", "deno.jsonc")(filename)
 			end,
 		}
-		servers.ts_ls = {
-			root_dir = function(filename, bufnr)
+		servers.tsserver = {
+			root_dir = function(filename)
 				local denoRootDir = lspconfig.util.root_pattern("deno.json", "deno.jsonc")(filename)
 				if denoRootDir then
 					print("this seems to be a deno project; returning nil so that ts_ls does not attach")
