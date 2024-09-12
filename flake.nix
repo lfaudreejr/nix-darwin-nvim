@@ -282,6 +282,7 @@
         name = defaultPackageName;
         packages = [ 
 		defaultPackage
+                pkgs.git
 	];
         inputsFrom = [ ];
         shellHook = ''
