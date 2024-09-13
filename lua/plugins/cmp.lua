@@ -1,13 +1,3 @@
-local has_words_before = function()
-	-- was vim.api.nvim_buf_get_option
-	-- if vim.api.nvim_buf_get_option_value(0, "buftype") == "prompt" then
-	if vim.api.nvim_get_option_value("buftype", { buf = 0 }) == "prompt" then
-		return false
-	end
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
-end
-
 return {
 	{ -- Autocompletion
 		"hrsh7th/nvim-cmp",
@@ -23,7 +13,16 @@ return {
 		end)()),
 		dependencies = {
 			-- Snippet Engine & its associated nvim-cmp source
-			"L3MON4D3/LuaSnip",
+			{
+				"L3MON4D3/LuaSnip",
+				name = "luasnip",
+				build = require("nixCatsUtils").lazyAdd((function ()
+					if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
+						return
+					end
+					return 'make install_jsregexp'
+				end)())
+			},
 			"saadparwaiz1/cmp_luasnip",
 
 			-- Adds other completion capabilities.
