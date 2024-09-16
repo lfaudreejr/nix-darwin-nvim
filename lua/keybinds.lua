@@ -42,7 +42,7 @@ vim.keymap.set("n", "<C-_>", "<cmd>split<cr>", { desc = "Horizontal split" })
 vim.keymap.set(
 	"n",
 	"<leader>bd",
-	'<cmd>lua require("plugins.utils").close_buffer_with_confirmation()<CR>',
+	'<cmd>lua require("utils").close_buffer_with_confirmation()<CR>',
 	{ desc = "Close buffer" }
 )
 
